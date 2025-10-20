@@ -15,20 +15,22 @@ COPY . .
 # Build for production
 RUN npm run build
 
-# Production image with nginx
-FROM nginx:alpine
+# Production image
+FROM node:18-alpine
 
-# Copy custom nginx config
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+WORKDIR /app
 
-# Copy built assets
-COPY --from=builder /app/dist /usr/share/nginx/html
+# Copy built files from builder
+COPY --from=builder /app/dist ./
+dist
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./
 
 # Expose port
-EXPOSE 8888
+EXPOSE 4173
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s \
-  CMD wget --quiet --tries=1 --spider http://localhost:8888 || exit 1
+  CMD wget --quiet --tries=1 --spider http://localhost:4173 || exit 1
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["npm", "run", "preview"]
