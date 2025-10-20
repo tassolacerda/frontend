@@ -22,6 +22,7 @@ export default defineConfig({
   preview: {
     host: '0.0.0.0',
     port: process.env.PORT ? parseInt(process.env.PORT, 10) : 10000,
-    allowedHosts: ['frontend-x2e7.onrender.com'],
+    strictPort: true,
+    allowedHosts: ['.onrender.com'],
   },
 })
