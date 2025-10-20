@@ -1,0 +1,104 @@
+@import 'lenis/dist/lenis.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* SF Pro Display Font Family */
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./assets/fonts/SFPRODISPLAYREGULAR.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./assets/fonts/SFPRODISPLAYMEDIUM.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./assets/fonts/SFPRODISPLAYMEDIUM.woff2') format('woff2');
+  font-weight: 510;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./assets/fonts/SFPRODISPLAYMEDIUM.woff2') format('woff2');
+  font-weight: 590;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./assets/fonts/SFPRODISPLAYBOLD.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  * {
+    font-family: 'SF Pro Display', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-base-100 text-base-content;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .gradient-bg {
+    @apply bg-gradient-to-br from-black via-gray-800 to-gray-600;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-black;
+  }
+
+  .input-focus {
+    @apply focus:ring-2 focus:ring-black focus:border-black;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-200;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-800 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-black;
+}
