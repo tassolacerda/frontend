@@ -21,16 +21,16 @@ FROM node:18-alpine
 WORKDIR /app
 
 # Copy built files from builder
-COPY --from=builder /app/dist ./
+COPY --from=builder /app/dist ./dist
 
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./
 
 # Expose port
-EXPOSE 4173
+EXPOSE 10000
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s \
-  CMD wget --quiet --tries=1 --spider http://localhost:4173 || exit 1
+  CMD wget --quiet --tries=1 --spider http://localhost:${PORT:-10000} || exit 1
 
-CMD ["npm", "run", "preview"]
+CMD ["npm", "run", "start"]
